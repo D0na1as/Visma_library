@@ -24,7 +24,7 @@ public class Book {
     @JsonProperty("GUID")
     private String guid;
     @JsonProperty("Availability")
-    private int availb;
+    private boolean availb;
 
     public Book() {
     }
@@ -37,7 +37,7 @@ public class Book {
         this.publDate = publDate;
         this.isbn = isbn;
         this.guid = guid;
-        this.availb = 1;
+        this.availb = true;
     }
 
     public String getName() {
@@ -96,11 +96,11 @@ public class Book {
         this.guid = guid;
     }
 
-    public int getAvailb() {
+    public boolean getAvailb() {
         return availb;
     }
 
-    public void setAvailb(int availb) {
+    public void setAvailb(boolean availb) {
         this.availb = availb;
     }
 

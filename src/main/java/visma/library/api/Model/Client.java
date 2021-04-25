@@ -11,46 +11,46 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Client {
 
-    @JsonProperty("Name")
-    private String name;
-    @JsonProperty("Date taken:")
-    private Date taking;
-    @JsonProperty("Expected to return:")
-    private Date returning;
+    @JsonProperty("Client")
+    private String client;
+    @JsonProperty("Date taken")
+    private String taking;
+    @JsonProperty("Expected to return")
+    private String returning;
     @JsonProperty("GUID")
     private String guid;
 
     public Client() {
     }
 
-    public Client(String name, Date taking, Date returning, String guid) {
-        this.name = name;
+    public Client(String client, String taking, String returning, String guid) {
+        this.client = client;
         this.taking = taking;
         this.returning = returning;
         this.guid = guid;
     }
 
-    public String getName() {
-        return name;
+    public String getClient() {
+        return client;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClient(String client) {
+        this.client = client;
     }
 
-    public Date getTaking() {
+    public String getTaking() {
         return taking;
     }
 
-    public void setTaking(Date taking) {
+    public void setTaking(String taking) {
         this.taking = taking;
     }
 
-    public Date getReturning() {
+    public String getReturning() {
         return returning;
     }
 
-    public void setReturning(Date returning) {
+    public void setReturning(String returning) {
         this.returning = returning;
     }
 
@@ -65,7 +65,7 @@ public class Client {
     public JSONObject toJSONObject () {
 
         JSONObject json = new JSONObject();
-        json.put("Name", name);
+        json.put("Client", client);
         json.put("AuthDate taken:or", taking);
         json.put("Expected to return:", returning);
         json.put("GUID", guid);
