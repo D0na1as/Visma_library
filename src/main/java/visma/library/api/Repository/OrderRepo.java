@@ -11,8 +11,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
-import visma.library.api.Model.Book;
+import visma.library.api.Model.Order;
 import visma.library.api.Utils.Utils;
 
 import java.io.File;
@@ -23,17 +22,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BookRepo {
+public class OrderRepo {
 
-    @Value("${library}")
+    @Value("${orders}")
     private  String path;
+
     @Autowired
     ObjectMapper mapper;
     @Autowired
     private Utils utils;
 
-    //Read all books from json file
-    public List<Book> getLibrary() throws JSONException, IOException, ParseException {
+    //Read all orders from json file
+    public List<Order> getTakings() throws JSONException, IOException, ParseException {
 
         JSONParser parser = new JSONParser();
         if ((new File(path)).length()>0) {
@@ -43,18 +43,17 @@ public class BookRepo {
             String dataArray = array.toString();
 
             ObjectMapper objectMapper = new ObjectMapper();
-            ObjectReader objectReader = objectMapper.reader().forType(new TypeReference<List<Book>>() {
+            ObjectReader objectReader = objectMapper.reader().forType(new TypeReference<List<Order>>() {
             });
-            return objectReader.readValue(response);
+            return objectReader.readValue(dataArray);
         }
         else {
             return new ArrayList<>();
         }
     }
 
-    //Write back to json file
-    public void saveToFile(List<Book> library) throws JsonProcessingException {
-        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(library);
+    public void saveToFile(List<Order> clients) throws JsonProcessingException {
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(clients);
         utils.saveFile(path, json);
     }
 }
