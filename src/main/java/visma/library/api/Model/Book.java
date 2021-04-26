@@ -3,25 +3,39 @@ package visma.library.api.Model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.json.simple.JSONObject;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
 
     @JsonProperty("Name")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Name field must contain just letters")
+    @NotEmpty
     private String name;
     @JsonProperty("Author")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Author field must contain just letters")
+    @NotEmpty
     private String author;
     @JsonProperty("Category")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Category field must contain just letters")
+    @NotEmpty
     private String category;
     @JsonProperty("Language")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Language field must contain just letters")
+    @NotEmpty
     private String language;
     @JsonProperty("Publication date")
+    @Pattern(regexp="^\\d{4}-\\d{2}-\\d{2}$",message = "Bad date format")
+    @NotEmpty
     private String publDate;
     @JsonProperty("ISBN")
+    @NotEmpty
     private String isbn;
     @JsonProperty("GUID")
+    @NotEmpty
     private String guid;
     @JsonProperty("Availability")
     private boolean availb;
@@ -102,20 +116,5 @@ public class Book {
 
     public void setAvailb(boolean availb) {
         this.availb = availb;
-    }
-
-    public JSONObject toJSONObject () {
-
-        JSONObject json = new JSONObject();
-        json.put("Name", name);
-        json.put("Author", author);
-        json.put("Category", category);
-        json.put("Language", language);
-        json.put("Publication date", publDate);
-        json.put("ISBN", isbn);
-        json.put("GUID", guid);
-        json.put("Availability", availb);
-
-        return json;
     }
 }

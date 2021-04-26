@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.simple.JSONObject;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Client {
+public class Order {
 
     @JsonProperty("Client")
     private String client;
@@ -20,10 +22,10 @@ public class Client {
     @JsonProperty("GUID")
     private String guid;
 
-    public Client() {
+    public Order() {
     }
 
-    public Client(String client, String taking, String returning, String guid) {
+    public Order(String client, String taking, String returning, String guid) {
         this.client = client;
         this.taking = taking;
         this.returning = returning;
@@ -60,16 +62,5 @@ public class Client {
 
     public void setGuid(String guid) {
         this.guid = guid;
-    }
-
-    public JSONObject toJSONObject () {
-
-        JSONObject json = new JSONObject();
-        json.put("Client", client);
-        json.put("AuthDate taken:or", taking);
-        json.put("Expected to return:", returning);
-        json.put("GUID", guid);
-
-        return json;
     }
 }
