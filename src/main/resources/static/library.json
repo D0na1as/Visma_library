@@ -1,0 +1,10 @@
+[ {
+  "Name" : "a",
+  "Author" : "string",
+  "Category" : "string",
+  "Language" : "string",
+  "Publication date" : "1234-12-12",
+  "ISBN" : "string",
+  "GUID" : "string",
+  "Availability" : true
+} ]
